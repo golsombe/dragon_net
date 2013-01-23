@@ -27,9 +27,11 @@ def tracker(keywords)
 	  # method access to its keys.
 	  # RT @madari59: El 80% de la inspección fiscal se centra en pymes y autónomos... http://t.co/TxR0iMzO ...cuando el 71,7% de la evasión la hace ...
 	  # danicorock::es
-	  if status.text.include? 'RT'
-		  puts "keywords: #{keywords.to_s} @ #{Time.now}"
-	  end
+	  #if status.text.include? 'RT'
+		  puts status.inspect
+		  #puts "keywords: #{status.text} @ #{Time.now}"
+		  @t1.exit
+	  #end
 	end
   end
 
@@ -42,10 +44,10 @@ TweetStream.configure do |config|
   config.auth_method        = :oauth
 end
 
-t1 = Thread.new{tracker('fiscal')}
-t2 = Thread.new{tracker('Obama')}
-t1.join
-t2.join
+@t1 = Thread.new{tracker('Obama')}
+#t2 = Thread.new{tracker('gun control')}
+@t1.join
+#t2.join
 
 # This will pull a sample of all tweets based on
 # your Twitter account's Streaming API role.
